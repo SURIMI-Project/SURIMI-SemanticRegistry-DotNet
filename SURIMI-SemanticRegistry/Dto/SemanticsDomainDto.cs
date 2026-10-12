@@ -2,7 +2,7 @@
 
 namespace SURIMI.SemanticRegistry.Dto
 {
-    internal sealed class SemanticsDomainDto
+    public sealed class SemanticsDomainDto
     {
         [JsonPropertyName("Domain")]
         public string Domain { get; set; } = string.Empty;

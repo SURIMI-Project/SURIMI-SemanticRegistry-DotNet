@@ -1,16 +1,16 @@
-﻿using SURIMI.SemanticRegistry.Dto;
-using Eii.ControlledVocabularies.Common;
+﻿using Eii.ControlledVocabularies.Common;
 using Eii.SemanticRegistry.Core;
 using Eii.SemanticRegistry.DTO;
 using Eii.SemanticRegistry.Serialization;
 using Microsoft.Extensions.Logging;
+using SURIMI.SemanticRegistry.Dto;
 using System.Text.Json;
 
 namespace SURIMI.SemanticRegistry.Converter
 {
-    public class SemanticsToRegistryConverter
+    public class SemanticsRegistryConverter
     {
-        public static DomainSemanticRegistry ToRegistryDTO(string jsonContent, ILogger<SemanticsToRegistryConverter> logger)
+        public static DomainSemanticRegistry FromJSON(string jsonContent, ILogger<SemanticsRegistryConverter> logger)
         {
             // Deserialize JSON
             SemanticsFileDto? semanticsFile;
@@ -27,10 +27,10 @@ namespace SURIMI.SemanticRegistry.Converter
             {
                 throw new InvalidDataException($"Semantics file contains no valid data.");
             }
-            return ToRegistryDTO(semanticsFile, logger).FromDTO();
+            return FromDTO(semanticsFile, logger).FromDTO();
         }
 
-        internal static DomainSemanticRegistryDTO ToRegistryDTO(SemanticsFileDto semanticsFile, ILogger<SemanticsToRegistryConverter> logger)
+        public static DomainSemanticRegistryDTO FromDTO(SemanticsFileDto semanticsFile, ILogger<SemanticsRegistryConverter> logger)
         {
             if (semanticsFile == null)
                 throw new ArgumentNullException(nameof(semanticsFile));

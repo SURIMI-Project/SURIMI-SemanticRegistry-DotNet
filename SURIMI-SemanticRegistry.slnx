@@ -1,14 +1,4 @@
 <Solution>
-  <Folder Name="/Solution items/">
-    <File Path=".gitignore" />
-    <File Path="LICENSE.txt" />
-    <File Path="README.md" />
-  </Folder>
-  <Folder Name="/Solution items/.github/" />
-  <Folder Name="/Solution items/.github/workflows/">
-    <File Path=".github/workflows/build-check.yml" />
-    <File Path=".github/workflows/release-nuget.yml" />
-  </Folder>
   <Project Path="SURIMI-SemanticRegistry.Tests/SURIMI.SemanticRegistry.Tests.csproj" />
   <Project Path="SURIMI-SemanticRegistry/SURIMI.SemanticRegistry.csproj" />
 </Solution>
