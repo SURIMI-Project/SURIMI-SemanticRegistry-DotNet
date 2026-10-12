@@ -1,0 +1,16 @@
+name: Release NuGet Package
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Use custom NuGet release action
+        uses: SURIMI-Project/Surimi-GithubActions/ReleaseNuGetPackageUbuntu@master
