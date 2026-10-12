@@ -1,4 +1,4 @@
-﻿using Dto;
+﻿using SURIMI.SemanticRegistry.Dto;
 using Eii.ControlledVocabularies.Common;
 using Eii.SemanticRegistry.Core;
 using Eii.SemanticRegistry.DTO;
@@ -6,7 +6,7 @@ using Eii.SemanticRegistry.Serialization;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
 
-namespace Converter
+namespace SURIMI.SemanticRegistry.Converter
 {
     public class SemanticsToRegistryConverter
     {

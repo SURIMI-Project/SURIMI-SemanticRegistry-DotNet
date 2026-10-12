@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>SURIMI.SemanticRegistry</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PackageId>SURIMI.SemanticRegistry</PackageId>
+    <Authors>EII</Authors>
+    <Description>SURIMI Semantic Registry</Description>
+    <Title>The SURIMI Semantic Registry</Title>
+    <PackageProjectUrl>https://github.com/Surimi-project/SURIMI-Registry-DotNet</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/Surimi-project/SURIMI-Registry-DotNet</RepositoryUrl>
+    <PackageReleaseNotes>Initial version</PackageReleaseNotes>
+    <PackageLicenseExpression>EUPL-1.2</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <IncludeSymbols>True</IncludeSymbols>
+    <IncludeReferencedProjects>True</IncludeReferencedProjects>
+    <Company>EII</Company>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\README.md" Pack="True" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="SURIMI.SemanticRegistry.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Eii.ControlledVocabularies" Version="1.0.51" />
+    <PackageReference Include="Eii.SemanticRegistry" Version="2.0.19" />
+  </ItemGroup>
+
+</Project>

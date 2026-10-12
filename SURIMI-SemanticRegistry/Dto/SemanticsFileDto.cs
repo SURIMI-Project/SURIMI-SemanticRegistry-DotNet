@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Dto
+namespace SURIMI.SemanticRegistry.Dto
 {
     internal sealed class SemanticsFileDto
     {

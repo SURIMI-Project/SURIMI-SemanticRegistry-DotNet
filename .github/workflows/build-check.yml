@@ -1,0 +1,15 @@
+name: Build Check
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Use custom NuGet build check action
+        uses: SURIMI-Project/Surimi-GithubActions/BuildCheckUbuntuBSR@master  
+        with:
+          run-tests: true
