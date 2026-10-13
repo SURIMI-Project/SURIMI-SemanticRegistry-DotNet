@@ -12,10 +12,10 @@ namespace SURIMI.SemanticRegistry.Converter
         public static DomainSemanticRegistry FromJSON(string jsonContent)
         {
             // Deserialize JSON
-            SemanticsFileDto? semanticsFile;
+            SemanticFileDto? semanticsFile;
             try
             {
-                semanticsFile = JsonSerializer.Deserialize<SemanticsFileDto>(jsonContent);
+                semanticsFile = JsonSerializer.Deserialize<SemanticFileDto>(jsonContent);
             }
             catch (Exception ex)
             {
@@ -29,14 +29,14 @@ namespace SURIMI.SemanticRegistry.Converter
             return FromDTO(semanticsFile).FromDTO();
         }
 
-        public static DomainSemanticRegistryDTO FromDTO(SemanticsFileDto semanticsFile)
+        public static DomainSemanticRegistryDTO FromDTO(SemanticFileDto semanticsFile)
         {
             if (semanticsFile == null)
                 throw new ArgumentNullException(nameof(semanticsFile));
 
             var result = new DomainSemanticRegistryDTO();
 
-            foreach (SemanticsDomainDto domain in semanticsFile.Domains)
+            foreach (SemanticDomainDto domain in semanticsFile.Domains)
             {
                 if (!Enum.TryParse(domain.Domain, true, out KeyDomain domainParsed) ||
                     !Enum.IsDefined(typeof(KeyDomain), domainParsed))

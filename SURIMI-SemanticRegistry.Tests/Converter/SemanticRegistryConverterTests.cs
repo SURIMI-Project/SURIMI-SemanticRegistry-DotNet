@@ -7,18 +7,18 @@ using Xunit;
 
 namespace SURIMI.SemanticRegistry.Tests.Converter
 {
-    public class SemanticsRegistryConverterTests
+    public class SemanticRegistryConverterTests
     {
         private static string FirstDomainName => Enum.GetNames(typeof(KeyDomain)).First();
 
         private static string ToJson(params (string Domain, (string Source, string Target)[] Mappings)[] domains)
         {
-            var file = new SemanticsFileDto();
+            var file = new SemanticFileDto();
             foreach (var d in domains)
             {
-                var domain = new SemanticsDomainDto { Domain = d.Domain };
+                var domain = new SemanticDomainDto { Domain = d.Domain };
                 foreach (var m in d.Mappings)
-                    domain.Mappings.Add(new SemanticsMappingDto { Source = m.Source, Target = m.Target });
+                    domain.Mappings.Add(new SemanticMappingDto { Source = m.Source, Target = m.Target });
                 file.Domains.Add(domain);
             }
             return JsonSerializer.Serialize(file);
@@ -28,7 +28,7 @@ namespace SURIMI.SemanticRegistry.Tests.Converter
         public void ToRegistryDTO_NullFile_ThrowsArgumentNullException()
         {
             // Arrange
-            SemanticsFileDto? file = null;
+            SemanticFileDto? file = null;
 
             // Act
             var act = () => SemanticsRegistryConverter.FromDTO(file!);
@@ -41,7 +41,7 @@ namespace SURIMI.SemanticRegistry.Tests.Converter
         public void ToRegistryDTO_EmptyDomains_ReturnsEmptyRegistries()
         {
             // Arrange
-            var file = new SemanticsFileDto();
+            var file = new SemanticFileDto();
 
             // Act
             var result = SemanticsRegistryConverter.FromDTO(file);
@@ -54,8 +54,8 @@ namespace SURIMI.SemanticRegistry.Tests.Converter
         public void ToRegistryDTO_InvalidDomain_ThrowsInvalidDataException()
         {
             // Arrange
-            var file = new SemanticsFileDto();
-            file.Domains.Add(new SemanticsDomainDto { Domain = "NotARealDomain_12345" });
+            var file = new SemanticFileDto();
+            file.Domains.Add(new SemanticDomainDto { Domain = "NotARealDomain_12345" });
 
             // Act
             var act = () => SemanticsRegistryConverter.FromDTO(file);
@@ -68,10 +68,10 @@ namespace SURIMI.SemanticRegistry.Tests.Converter
         public void ToRegistryDTO_ValidDomain_CopiesMappings()
         {
             // Arrange
-            var file = new SemanticsFileDto();
-            var domain = new SemanticsDomainDto { Domain = FirstDomainName };
-            domain.Mappings.Add(new SemanticsMappingDto { Source = "a", Target = "b" });
-            domain.Mappings.Add(new SemanticsMappingDto { Source = "c", Target = "d" });
+            var file = new SemanticFileDto();
+            var domain = new SemanticDomainDto { Domain = FirstDomainName };
+            domain.Mappings.Add(new SemanticMappingDto { Source = "a", Target = "b" });
+            domain.Mappings.Add(new SemanticMappingDto { Source = "c", Target = "d" });
             file.Domains.Add(domain);
             var key = Enum.Parse<KeyDomain>(FirstDomainName);
 
@@ -90,8 +90,8 @@ namespace SURIMI.SemanticRegistry.Tests.Converter
         public void ToRegistryDTO_LowerCaseDomain_ParsesCaseInsensitively()
         {
             // Arrange
-            var file = new SemanticsFileDto();
-            file.Domains.Add(new SemanticsDomainDto { Domain = FirstDomainName.ToLowerInvariant() });
+            var file = new SemanticFileDto();
+            file.Domains.Add(new SemanticDomainDto { Domain = FirstDomainName.ToLowerInvariant() });
 
             // Act
             var result = SemanticsRegistryConverter.FromDTO(file);
@@ -104,9 +104,9 @@ namespace SURIMI.SemanticRegistry.Tests.Converter
         public void ToRegistryDTO_DuplicateDomains_Throws()
         {
             // Arrange
-            var file = new SemanticsFileDto();
-            file.Domains.Add(new SemanticsDomainDto { Domain = FirstDomainName });
-            file.Domains.Add(new SemanticsDomainDto { Domain = FirstDomainName });
+            var file = new SemanticFileDto();
+            file.Domains.Add(new SemanticDomainDto { Domain = FirstDomainName });
+            file.Domains.Add(new SemanticDomainDto { Domain = FirstDomainName });
 
             // Act
             var act = () => SemanticsRegistryConverter.FromDTO(file);
