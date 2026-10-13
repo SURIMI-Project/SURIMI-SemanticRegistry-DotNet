@@ -5,15 +5,15 @@ using Xunit;
 
 namespace SURIMI.SemanticRegistry.Tests.Dto
 {
-    public class SemanticsDtoTests
+    public class SemanticDtoTests
     {
         [Fact]
         public void NewDtos_HaveEmptyDefaults()
         {
             // Arrange & Act
-            var file = new SemanticsFileDto();
-            var domain = new SemanticsDomainDto();
-            var mapping = new SemanticsMappingDto();
+            var file = new SemanticFileDto();
+            var domain = new SemanticDomainDto();
+            var mapping = new SemanticMappingDto();
 
             // Assert
             file.Domains.Should().BeEmpty();
@@ -30,14 +30,14 @@ namespace SURIMI.SemanticRegistry.Tests.Dto
             var json = "{\"Domains\":[{\"Domain\":\"X\",\"Mappings\":[{\"Source\":\"s\",\"Target\":\"t\"}]}]}";
 
             // Act
-            var file = JsonSerializer.Deserialize<SemanticsFileDto>(json);
+            var file = JsonSerializer.Deserialize<SemanticFileDto>(json);
 
             // Assert
             file.Should().NotBeNull();
             file!.Domains.Should().ContainSingle();
             file.Domains[0].Domain.Should().Be("X");
             file.Domains[0].Mappings.Should().ContainSingle()
-                .Which.Should().BeEquivalentTo(new SemanticsMappingDto { Source = "s", Target = "t" });
+                .Which.Should().BeEquivalentTo(new SemanticMappingDto { Source = "s", Target = "t" });
         }
     }
 }

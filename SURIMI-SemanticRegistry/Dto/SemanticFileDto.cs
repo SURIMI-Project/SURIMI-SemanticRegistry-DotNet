@@ -2,9 +2,9 @@
 
 namespace SURIMI.SemanticRegistry.Dto
 {
-    public sealed class SemanticsFileDto
+    public sealed class SemanticFileDto
     {
         [JsonPropertyName("Domains")]
-        public List<SemanticsDomainDto> Domains { get; set; } = new();
+        public List<SemanticDomainDto> Domains { get; set; } = new();
     }
 }
