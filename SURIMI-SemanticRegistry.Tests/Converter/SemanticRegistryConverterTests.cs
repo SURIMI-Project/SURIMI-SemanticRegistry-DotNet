@@ -31,7 +31,7 @@ namespace SURIMI.SemanticRegistry.Tests.Converter
             SemanticFileDto? file = null;
 
             // Act
-            var act = () => SemanticsRegistryConverter.FromDTO(file!);
+            var act = () => SemanticRegistryConverter.FromDTO(file!);
 
             // Assert
             act.Should().Throw<ArgumentNullException>();
@@ -44,7 +44,7 @@ namespace SURIMI.SemanticRegistry.Tests.Converter
             var file = new SemanticFileDto();
 
             // Act
-            var result = SemanticsRegistryConverter.FromDTO(file);
+            var result = SemanticRegistryConverter.FromDTO(file);
 
             // Assert
             result.Registries.Should().BeEmpty();
@@ -58,7 +58,7 @@ namespace SURIMI.SemanticRegistry.Tests.Converter
             file.Domains.Add(new SemanticDomainDto { Domain = "NotARealDomain_12345" });
 
             // Act
-            var act = () => SemanticsRegistryConverter.FromDTO(file);
+            var act = () => SemanticRegistryConverter.FromDTO(file);
 
             // Assert
             act.Should().Throw<InvalidDataException>().WithMessage("*NotARealDomain_12345*");
@@ -76,7 +76,7 @@ namespace SURIMI.SemanticRegistry.Tests.Converter
             var key = Enum.Parse<KeyDomain>(FirstDomainName);
 
             // Act
-            var result = SemanticsRegistryConverter.FromDTO(file);
+            var result = SemanticRegistryConverter.FromDTO(file);
 
             // Assert
             result.Registries.Should().ContainKey(key);
@@ -94,7 +94,7 @@ namespace SURIMI.SemanticRegistry.Tests.Converter
             file.Domains.Add(new SemanticDomainDto { Domain = FirstDomainName.ToLowerInvariant() });
 
             // Act
-            var result = SemanticsRegistryConverter.FromDTO(file);
+            var result = SemanticRegistryConverter.FromDTO(file);
 
             // Assert
             result.Registries.Should().ContainKey(Enum.Parse<KeyDomain>(FirstDomainName));
@@ -109,7 +109,7 @@ namespace SURIMI.SemanticRegistry.Tests.Converter
             file.Domains.Add(new SemanticDomainDto { Domain = FirstDomainName });
 
             // Act
-            var act = () => SemanticsRegistryConverter.FromDTO(file);
+            var act = () => SemanticRegistryConverter.FromDTO(file);
 
             // Assert
             act.Should().Throw<Exception>();
@@ -122,7 +122,7 @@ namespace SURIMI.SemanticRegistry.Tests.Converter
             var json = "{ not valid json";
 
             // Act
-            var act = () => SemanticsRegistryConverter.FromJSON(json);
+            var act = () => SemanticRegistryConverter.FromJSON(json);
 
             // Assert
             act.Should().Throw<Exception>()
@@ -137,7 +137,7 @@ namespace SURIMI.SemanticRegistry.Tests.Converter
             var json = "null";
 
             // Act
-            var act = () => SemanticsRegistryConverter.FromJSON(json);
+            var act = () => SemanticRegistryConverter.FromJSON(json);
 
             // Assert
             act.Should().Throw<InvalidDataException>();
@@ -150,7 +150,7 @@ namespace SURIMI.SemanticRegistry.Tests.Converter
             var json = ToJson((FirstDomainName, new[] { ("a", "b") }));
 
             // Act
-            var result = SemanticsRegistryConverter.FromJSON(json);
+            var result = SemanticRegistryConverter.FromJSON(json);
 
             // Assert
             result.Should().NotBeNull();
@@ -163,7 +163,7 @@ namespace SURIMI.SemanticRegistry.Tests.Converter
             var json = ToJson(("Bogus_Domain_999", Array.Empty<(string, string)>()));
 
             // Act
-            var act = () => SemanticsRegistryConverter.FromJSON(json);
+            var act = () => SemanticRegistryConverter.FromJSON(json);
 
             // Assert
             act.Should().Throw<InvalidDataException>();

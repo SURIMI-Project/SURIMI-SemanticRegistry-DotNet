@@ -7,7 +7,7 @@ using System.Text.Json;
 
 namespace SURIMI.SemanticRegistry.Converter
 {
-    public class SemanticsRegistryConverter
+    public class SemanticRegistryConverter
     {
         public static DomainSemanticRegistry FromJSON(string jsonContent)
         {
